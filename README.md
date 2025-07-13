@@ -1,5 +1,3 @@
 # Bhool 
 
-## Requirements
-- Visualize a maze
-- Navigate through the maze
+Maze solver demo for Diya
