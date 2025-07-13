@@ -2,7 +2,8 @@
 
 void Visualizer::draw(const MazeSize size, const std::vector<BlockType> maze) {
     if (!windowCreated) {
-        window.create(sf::VideoMode(sf::Vector2u(size.width * tileSize, size.height * tileSize)), "Maze");
+        auto desktop = sf::VideoMode::getDesktopMode();
+        window.create(sf::VideoMode(desktop.size), "Maze");
         windowCreated = true;
     }
     
@@ -15,10 +16,16 @@ void Visualizer::draw(const MazeSize size, const std::vector<BlockType> maze) {
     
     window.clear();
     
+    // Calculate tile size to fit window
+    auto windowSize = window.getSize();
+    float scaledTileX = (float)windowSize.x / size.width;
+    float scaledTileY = (float)windowSize.y / size.height;
+    float scaledTile = std::min(scaledTileX, scaledTileY);
+    
     for (int x = 0; x < size.width; ++x) {
         for (int y = 0; y < size.height; ++y) {
-            sf::RectangleShape cell(sf::Vector2f(tileSize, tileSize));
-            cell.setPosition(sf::Vector2f(x * tileSize, y * tileSize));
+            sf::RectangleShape cell(sf::Vector2f(scaledTile, scaledTile));
+            cell.setPosition(sf::Vector2f(x * scaledTile, y * scaledTile));
             
             BlockType type = maze[y * size.width + x];
             if (type == BlockType::WALL) cell.setFillColor(sf::Color::Black);
