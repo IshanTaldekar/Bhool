@@ -1,6 +1,6 @@
 #include "BFS.h"
 
-BFS::BFS(const MazeSize size, std::vector<BlockType> &maze) {
+BFS::BFS(const MazeSize &size, std::vector<BlockType> &maze) {
     this->maze = maze;
     this->size = size;
     this->parent = std::vector<Point>(size.height * size.width, {-1, -1});
@@ -23,7 +23,7 @@ std::vector<BlockType> BFS::step() {
     if (!exploring.empty()) {
         Point currentPoint = exploring.front();
 
-        for (const std::vector<int> currentMove: legalMoves) {
+        for (const std::vector<int> &currentMove: legalMoves) {
             if (currentPoint.x + currentMove.at(0) >= 0 && currentPoint.x + currentMove.at(0) < size.height
                 && currentPoint.y + currentMove.at(1) >= 0 && currentPoint.y + currentMove.at(1) < size.width) {
                 Point newPoint = Point{currentPoint.x + currentMove.at(0), currentPoint.y + currentMove.at(1)};

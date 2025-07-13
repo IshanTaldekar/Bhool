@@ -18,7 +18,7 @@ class BFS: public SearchAlgorithm {
     std::vector<std::vector<int>> legalMoves {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
 public:
-    BFS(const MazeSize size, std::vector<BlockType> &maze);
+    BFS(const MazeSize &size, std::vector<BlockType> &maze);
     virtual std::vector<BlockType> step() override;
 };
 

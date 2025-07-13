@@ -17,6 +17,7 @@ add_executable(main
         src/main.cpp
         src/BFS.cpp
         src/Visualizer.cpp
+        src/A_star.cpp
 )
 target_include_directories(main PRIVATE include)
 target_compile_features(main PRIVATE cxx_std_17)
